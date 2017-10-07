@@ -18,7 +18,7 @@ class App extends Component {
     };
   }
 
-  componentDidMount() {
+  componentDidMount() { // TODO: change so that data is only fetched once
     fetch("/data", {
       accept: "application/json"
     })
@@ -39,14 +39,14 @@ class App extends Component {
       innerComponent =
         <div className="App">
           <NavigationArrow direction='left' to='about' />
-          <Graph type={'energy'} />
+          <Graph type={'energy'} containerId='energy-chart'/>
           <NavigationArrow direction='right' to='costs' />
         </div>;
     } else if (this.props.location === 'costs') {
-      innerComponent = 
+      innerComponent =
         <div className="App">
           <NavigationArrow direction='left' to='energy' />
-          <Graph type={'costs'} />
+          <Graph type={'costs'} containerId='costs-chart'/>
           <NavigationArrow direction='right' inactive />
         </div>;
     } else {
