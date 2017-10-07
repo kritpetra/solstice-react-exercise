@@ -1,4 +1,13 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router';
+
+import Header from './Header';
+import Footer from './Footer';
+import About from './About';
+import Graph from './Graph';
+import NotFound from './NotFound';
+import NavigationArrow from './NavigationArrow';
+
 import '../styles/App.css';
 
 class App extends Component {
@@ -9,21 +18,52 @@ class App extends Component {
     };
   }
 
-  render() {
-    return (
-      <div className="App">
-        <p>{ JSON.stringify(this.state.data) }</p>
-      </div>
-    );
-  }
-
-  componentDidMount() { // TODO: Test fetching data -- delete
+  componentDidMount() {
     fetch("/data", {
       accept: "application/json"
     })
     .then(response => response.json())
     .then(data => this.setState({ data }));
   }
+
+  render() {
+    let innerComponent;
+    if (this.props.location === 'about') {
+      innerComponent =
+        <div className="App">
+          <NavigationArrow direction='left' inactive />
+          <About />
+          <NavigationArrow direction='right' to='energy' />
+        </div>;
+    } else if (this.props.location === 'energy') {
+      innerComponent =
+        <div className="App">
+          <NavigationArrow direction='left' to='about' />
+          <Graph type={'energy'} />
+          <NavigationArrow direction='right' to='costs' />
+        </div>;
+    } else if (this.props.location === 'costs') {
+      innerComponent = 
+        <div className="App">
+          <NavigationArrow direction='left' to='energy' />
+          <Graph type={'costs'} />
+          <NavigationArrow direction='right' inactive />
+        </div>;
+    } else {
+      throw new Error('Invalid props.location in App');
+    }
+
+    return innerComponent;
+  }
 }
 
-export default App;
+const AppWrapper = props =>
+  <div className="AppContainer">
+    <Header {...props} />
+    <App {...props} />
+    <Footer />
+  </div>;
+
+export const AboutContainer = () => <AppWrapper location='about' />;
+export const EnergyGraph = () => <AppWrapper location='energy' />;
+export const CostsGraph = () => <AppWrapper location='costs' />;
