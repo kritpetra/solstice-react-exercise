@@ -1,16 +1,25 @@
 {
   "name": "solstice-react-exercise",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0",
-    "react-scripts": "1.0.14"
-  },
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "start": "concurrently \"npm run frontend\" \"npm run backend\"",
+    "frontend": "node client.js",
+    "backend": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kritpetra/solstice-react-exercise.git"
+  },
+  "author": "Krit Petrachaianan",
+  "license": "ISC",
+  "proxy": "http://localhost:3001/",
+  "dependencies": {
+    "express": "^4.16.1"
+  },
+  "devDependencies": {
+    "concurrently": "^3.5.0"
   }
 }
