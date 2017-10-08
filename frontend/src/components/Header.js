@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import '../styles/Header.css';
+
 export default ({ location }) =>
   <div className='header'>
     <HeaderLink to='/about' inactive={location === 'about'}>

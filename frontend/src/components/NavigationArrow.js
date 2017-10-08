@@ -1,10 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import '../styles/NavigationArrow.css'
+
 export default ({ direction, to, inactive }) =>
-  <div>
+  <div className='navigation-arrow'>
     { inactive ?
-        <div>inactive arrow</div>
-      : <Link to={to}>{direction} arrow</Link>
+        <span className={'greyed-out glyphicon glyphicon-chevron-' + direction}></span>
+      : <Link to={to}>
+          <span className={'glyphicon glyphicon-chevron-' + direction}></span>
+        </Link>
     }
   </div>;

@@ -70,7 +70,8 @@ export default class Graph extends Component {
     }
 
     render() {
-      return (<div id={this.props.containerId}>
-      </div>);
+      return (
+        <div id={this.props.containerId}></div>
+      );
     }
 }

@@ -1,0 +1,13 @@
+.about p {
+  font-size: 14pt;
+}
+
+.about img {
+  height: 50px;
+}
+
+.about {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

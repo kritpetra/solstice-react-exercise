@@ -11,6 +11,7 @@ export default class Graph extends Component {
       };
     }
 
+    // TODO: first series will sometimes not show, even if it is stored in state -- need to investigate further
     componentWillMount() {
       fetch("/data?q=" + this.props.column1, {
         accept: "application/json"
@@ -53,7 +54,7 @@ export default class Graph extends Component {
                   year: 'numeric'
                 });
 
-                return (
+                return ( // TODO: First series will sometimes not render, causing crash
                   '<b>' + monthyear + '</b><br/>' +
                   "Your cost: <b>$" + this.points[0].y + "</b>" +
                   "<br/>You saved <b>$" + this.points[1].y + "</b> this month!"
@@ -78,20 +79,18 @@ export default class Graph extends Component {
               {
                 name: this.props.series2,
                 data: this.state.data2,
-                // linkedTo: ":previous",
                 color: "#FFD700",
                 fillOpacity: 0.2,
                 dashStyle: 'dash'
               }
-            ]
+            ],
+
+            credits: {
+              enabled: false
+            }
           });
         }) // End second fetch
       ) // End first fetch
-
-    }
-
-    componentDidMount() { // Placeholder data and options
-
     }
 
     componentWillUnmount() {
@@ -99,7 +98,8 @@ export default class Graph extends Component {
     }
 
     render() {
-      return (<div id={this.props.containerId}>
-      </div>);
+      return (
+        <div id={this.props.containerId}></div>
+      );
     }
 }

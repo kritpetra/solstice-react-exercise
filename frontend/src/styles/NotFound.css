@@ -1,0 +1,14 @@
+#text-404 {
+  margin: 30px auto;
+  width: 100%;
+  text-align: center;
+
+  display: block;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+#text-404 p {
+  font-size: 16px;
+  font-weight: 400;
+}
