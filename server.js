@@ -11,9 +11,11 @@ app.get("/data", (req, res) => {
   if (!req.query.q) {
     res.json(utilData); // No query specified -- get unaltered dataset
   } else {
-    res.json(utilData.map(entry =>
-      [Date.UTC(entry.year, entry.month), entry[req.query.q]]
-    ));
+    res.json(
+      utilData
+        .map(entry => [Date.UTC(entry.year, entry.month - 1), entry[req.query.q]])
+        .sort((a, b) => a[0] - b[0])
+    );
   }
 });
 

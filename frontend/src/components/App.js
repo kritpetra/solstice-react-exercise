@@ -11,24 +11,9 @@ import NavigationArrow from './NavigationArrow';
 import '../styles/App.css';
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      data: null
-    };
-  }
-
-  componentDidMount() { // TODO: change so that data is only fetched once
-    fetch("/data", {
-      accept: "application/json"
-    })
-    .then(response => response.json())
-    .then(data => this.setState({ data }));
-  }
-
   render() {
     let innerComponent;
-    if (this.props.location === 'about') {
+    if (this.props.location === 'about') { // TODO: more concise logic, time permitting
       innerComponent =
         <div className="App">
           <NavigationArrow direction='left' inactive />
@@ -57,13 +42,13 @@ class App extends Component {
   }
 }
 
-const AppWrapper = props =>
+const AppContainer = props =>
   <div className="AppContainer">
     <Header {...props} />
     <App {...props} />
     <Footer />
   </div>;
 
-export const AboutContainer = () => <AppWrapper location='about' />;
-export const EnergyGraph = () => <AppWrapper location='energy' />;
-export const CostsGraph = () => <AppWrapper location='costs' />;
+export const AboutContainer = () => <AppContainer location='about' />;
+export const EnergyGraph = () => <AppContainer location='energy' />;
+export const CostsGraph = () => <AppContainer location='costs' />;
