@@ -46,15 +46,25 @@ export default class Graph extends Component {
             },
             tooltip: {
               shared: true,
-              valuePrefix: '$',
               formatter: function () {
+
                 const monthyear = new Date(this.x).toLocaleString('en-us', {
                   timeZone: 'UTC',
                   month: 'long',
                   year: 'numeric'
                 });
 
-                return ( // TODO: First series will sometimes not render, causing crash
+                // Sometimes first series will not show up, causing app to crash.
+                // This tries to provide a failsafe where at least the crash
+                // doesn't happen.
+                if (this.points.length < 2) {
+                  return (
+                    '<b>' + monthyear + '</b><br/>' +
+                    "Your savings: <b>$" + this.points[0].y + "</b>"
+                  );
+                }
+
+                return (
                   '<b>' + monthyear + '</b><br/>' +
                   "Your cost: <b>$" + this.points[0].y + "</b>" +
                   "<br/>You saved <b>$" + this.points[1].y + "</b> this month!"
