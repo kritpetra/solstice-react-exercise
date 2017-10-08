@@ -14,7 +14,7 @@ if (process.env.NODE_ENV === 'production') {
  */
 app.get("/data", (req, res) => {
   if (!req.query.q) {
-    res.json(utilData); // If no query specified, get unaltered dataset
+    res.json(utilData); // No query specified -- get unaltered dataset
   } else {
     res.json(
       utilData
