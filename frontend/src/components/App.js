@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router';
 
 import Header from './Header';
 import Footer from './Footer';
 import About from './About';
 import Graph from './Graph';
-import NotFound from './NotFound';
 import NavigationArrow from './NavigationArrow';
 
 import '../styles/App.css';

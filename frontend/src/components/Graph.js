@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Highcharts from 'highcharts';
 
 import SingleSeriesChart from './SingleSeriesChart';
 import StackedChart from './StackedChart';

@@ -4,6 +4,10 @@ const fs = require("fs");
 const port = process.env.PORT || 3001;
 const utilData = JSON.parse(fs.readFileSync('data/utilData.json', 'utf8'));
 
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('frontend/build'));
+}
+
 /*
  *  GET /data?q=[column] => [{ month: Date, [column]: [data] }, ...]
  */

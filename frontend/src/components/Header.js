@@ -12,7 +12,7 @@ export default ({ location }) =>
       Energy Use
     </HeaderLink>
     <HeaderLink to='/costs' inactive={location === 'costs'}>
-      Energy Costs
+      Utility Bills
     </HeaderLink>
   </div>;
 
